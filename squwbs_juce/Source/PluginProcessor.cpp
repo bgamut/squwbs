@@ -464,16 +464,16 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
             float right = main.getSample(0, j);
             
             float mono = monoLimiterLeft.process((left + right)/ 2.0);
+            float monoprocessed = MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
             left = left - mono;
             right = right - mono;
             
             {
                 
-                float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left)))+MLP2Left.process(MLP1Left.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
-                float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right)))+MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
-                
-                main.setSample(0, j, finalLimiterLeft.process(TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft)/4.0));
-                main.setSample(1, j, finalLimiterRight.process(TGateRight.process(mixright)+TLimiterRight.process(mixright)/4.0));
+                float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left)))+monoprocessed;
+                float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right)))+monoprocessed;
+                main.setSample(0, j, finalLimiterLeft.process((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0));
+                main.setSample(1, j, finalLimiterRight.process((TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0));
 
             }
         }
@@ -489,15 +489,16 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
             float right = main.getSample(1, j);
 
             float mono = monoLimiterLeft.process((left + right)/ 2.0);
+            float monoprocessed = MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
             left=left-mono;
             right=right-mono;
             
             {
                 
-                float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left)))+MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
-                float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right)))+MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
-                main.setSample(0, j, finalLimiterLeft.process(TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft)/4.0));
-                main.setSample(1, j, finalLimiterRight.process(TGateRight.process(mixright)+TLimiterRight.process(mixright)/4.0));
+                float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left)))+monoprocessed;
+                float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right)))+monoprocessed;
+                main.setSample(0, j, finalLimiterLeft.process((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0));
+                main.setSample(1, j, finalLimiterRight.process((TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0));
             }
         }
     }
