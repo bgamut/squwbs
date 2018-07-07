@@ -15,15 +15,7 @@
 //==============================================================================
 /**
 */
-double toDB (double inputValue){
-    //return 20.0 * ((inputValue) > 0.00001 ? log10f(inputValue) : -6.3);
-    //return 20.0*log10f(inputValue);
-    return log(inputValue)/log(powf(2.0, 1/6));
-}
-double toLinear(double dB){
-    //return powf(10.0, dB);
-    return powf(powf(2.0,1/6),(dB-6.0));
-}
+
 class LP6 {
 public:
   LP6() :
@@ -293,7 +285,7 @@ class Eq3{
 public:
   Eq3():
     lg(1.0),
-    mg(toLinear(-4.5)),
+    mg(powf(powf(2.0,1/6),(-10.5))),
     hg(1.0)
   {
     lf.setResonance(0.0);
@@ -423,9 +415,9 @@ private:
 class Gate{
 public:
   Gate():
-  releaseTime(0.2),
+  releaseTime(1.5),
   sr(44100),
-  threshold(0.001),
+  threshold(powf(powf(2.0,1/6),(-54.0))),
   outputValue(0.0),
   gain(1.0),
   holdTime(1.0),

@@ -211,7 +211,7 @@ void Limiter::set(double attackMs, double releaseMs,double thresholdDb,int sampl
   releaseCoeff=exp(-1*(releaseMs*double(sampleRate)*1000.0));
   delayIndex=0;
   env=0.0;
-  threshold=toLinear(thresholdDb);
+  threshold=powf(powf(2.0,1/6),(thresholdDb-6.0));
   sr=sampleRate;
   currentGain=1.0;
   targetGain=1.0;
@@ -413,6 +413,9 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     SEQLeft.set(sampleRate);
     SEQRight.set(sampleRate);
     
+    TGateLeft.set(sampleRate);
+    TGateRight.set(sampleRate);
+    
 }
 
 void SquwbsAudioProcessor::releaseResources()
@@ -469,8 +472,8 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
                 float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left)))+MLP2Left.process(MLP1Left.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
                 float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right)))+MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
                 
-                main.setSample(0, j, mixleft);
-                main.setSample(1, j, mixright);
+                main.setSample(0, j, finalLimiterLeft.process(TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft)/4.0));
+                main.setSample(1, j, finalLimiterRight.process(TGateRight.process(mixright)+TLimiterRight.process(mixright)/4.0));
 
             }
         }
@@ -493,8 +496,8 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
                 
                 float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left)))+MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
                 float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right)))+MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
-                main.setSample(0, j, mixleft);
-                main.setSample(1, j, mixright);
+                main.setSample(0, j, finalLimiterLeft.process(TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft)/4.0));
+                main.setSample(1, j, finalLimiterRight.process(TGateRight.process(mixright)+TLimiterRight.process(mixright)/4.0));
             }
         }
     }
