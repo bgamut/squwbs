@@ -416,6 +416,9 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     TGateLeft.set(sampleRate);
     TGateRight.set(sampleRate);
     
+    LP1Left.set(2*sin((M_PI)*15000.0/sampleRate));
+    LP1Right.set(2*sin((M_PI)*15000.0/sampleRate));
+    
 }
 
 void SquwbsAudioProcessor::releaseResources()
@@ -470,8 +473,8 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
             
             {
                 
-                float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left*0.68)))+monoprocessed;
-                float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.68)))+monoprocessed;
+                float mixleft = LP1Left.process(SEQLeft.process(SLP1Left.process(SHP1Left.process(left*0.68)))+monoprocessed);
+                float mixright = LP1Right.process(SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.68)))+monoprocessed);
                 main.setSample(0, j, finalLimiterLeft.process((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0));
                 main.setSample(1, j, finalLimiterRight.process((TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0));
 
@@ -495,8 +498,8 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
             
             {
                 
-                float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left*0.68)))+monoprocessed;
-                float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.68)))+monoprocessed;
+                float mixleft = LP1Left.process(SEQLeft.process(SLP1Left.process(SHP1Left.process(left*0.68)))+monoprocessed);
+                float mixright = LP1Right.process(SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.68)))+monoprocessed);
                 main.setSample(0, j, finalLimiterLeft.process((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0));
                 main.setSample(1, j, finalLimiterRight.process((TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0));
             }

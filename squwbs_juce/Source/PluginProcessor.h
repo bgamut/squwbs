@@ -535,6 +535,8 @@ private:
     HP36 SHP1Right;
     LP24 SLP1Left;
     LP24 SLP1Right;
+    LP24 LP1Left;
+    LP24 LP1Right;
     Eq3 SEQLeft;
     Eq3 SEQRight;
     Limiter TLimiterLeft;
