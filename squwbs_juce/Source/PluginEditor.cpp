@@ -10,7 +10,47 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
+template<typename T>
+struct scientificNumberType
+{
+    explicit scientificNumberType(T number, int decimalPlaces) : number(number), decimalPlaces(decimalPlaces) {}
+    
+    T number;
+    int decimalPlaces;
+};
+
+template<typename T>
+scientificNumberType<T> scientificNumber(T t, int decimalPlaces)
+{
+    return scientificNumberType<T>(t, decimalPlaces);
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>& n)
+{
+    double numberDouble = n.number;
+    
+    int eToThe = 0;
+    for(; numberDouble > 9; ++eToThe)
+    {
+        numberDouble /= 10;
+    }
+    
+    // memorize old state
+    std::ios oldState(nullptr);
+    oldState.copyfmt(os);
+    
+    os << std::fixed << std::setprecision(n.decimalPlaces) << numberDouble << "e" << eToThe;
+    
+    // restore state
+    os.copyfmt(oldState);
+    
+    return os;
+}
 //==============================================================================
 SquwbsAudioProcessorEditor::SquwbsAudioProcessorEditor (SquwbsAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
@@ -39,7 +79,9 @@ void SquwbsAudioProcessorEditor::paint (Graphics& g)
     g.setColour (Colours::white);
     g.setFont (15.0f);
     //g.drawFittedText ('testing', getLocalBounds(), Justification::centred, 1);
-    std::cout<<std::to_string(getProcessor().leftNow)<<std::endl;
+    std::cout << scientificNumber(getProcessor().leftNow, 3)  << std::endl;
+
+    //std::cout<<std::to_string(getProcessor().leftNow)<<std::endl;
 }
 
 void SquwbsAudioProcessorEditor::resized()
