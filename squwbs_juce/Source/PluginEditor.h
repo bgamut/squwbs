@@ -16,7 +16,7 @@
 //==============================================================================
 /**
 */
-class SquwbsAudioProcessorEditor  : public AudioProcessorEditor
+class SquwbsAudioProcessorEditor  : public AudioProcessorEditor, private Timer
 {
 public:
     SquwbsAudioProcessorEditor (SquwbsAudioProcessor&);
@@ -25,11 +25,17 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
+    
 
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
+    void timerCallback() override;
     SquwbsAudioProcessor& processor;
-
+    SquwbsAudioProcessor& getProcessor() const
+    
+    {
+        return static_cast<SquwbsAudioProcessor&> (processor);
+    }
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquwbsAudioProcessorEditor)
 };
