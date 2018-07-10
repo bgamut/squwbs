@@ -11,6 +11,21 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "AllpassDelay.h"
+#include "Clipper.h"
+#include "Gate.h"
+#include "HP12.h"
+#include "HP24.h"
+#include "HP36.h"
+#include "LP12.h"
+#include "LP24.h"
+#include "LP36.h"
+#include "Notch12.h"
+#include "Phaser.h"
+#include "ForwardFFT.h"
+#include "ThreeBandEQ.h"
+#include "math.h"
+#include "FourBandEQ.h"
 
 //==============================================================================
 /*

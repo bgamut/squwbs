@@ -11,14 +11,15 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "ThreeBandEQ.h"
 
 //==============================================================================
 /**
 */
 
-class LP6 {
+class oneLP6 {
 public:
-  LP6() :
+  oneLP6() :
   cutoff(0.1),
   resonance(0.0),
   buf0(0.0)
@@ -36,9 +37,9 @@ private:
   
   double buf0;
 };
-class LP12 {
+class oneLP12 {
 public:
-    LP12() :
+    oneLP12() :
     cutoff(0.1),
     resonance(0.0),
     buf0(0.0),
@@ -58,9 +59,9 @@ private:
     double buf0;
     double buf1;
 };
-class LP24 {
+class oneLP24 {
 public:
-    LP24() :
+    oneLP24() :
     cutoff(0.1),
     resonance(0.0),
     buf0(0.0),
@@ -84,9 +85,9 @@ private:
 	double buf2;
 	double buf3;
 };
-class LP36 {
+class oneLP36 {
 public:
-  LP36() :
+  oneLP36() :
   cutoff(0.1),
   resonance(0.0),
   buf0(0.0),
@@ -113,9 +114,9 @@ private:
   double buf4;
   double buf5;
 };
-class LP48 {
+class oneLP48 {
 public:
-  LP48() :
+  oneLP48() :
   cutoff(0.1),
   resonance(0.0),
   buf0(0.0),
@@ -146,9 +147,9 @@ private:
   double buf6;
   double buf7;
 };
-class HP12 {
+class oneHP12 {
 public:
-    HP12() :
+    oneHP12() :
     cutoff(0.1),
     resonance(0.0),
     buf0(0.0),
@@ -167,9 +168,9 @@ private:
     double buf0;
     double buf1;
 };
-class HP24 {
+class oneHP24 {
 public:
-    HP24() :
+    oneHP24() :
     cutoff(0.1),
     resonance(0.0),
     buf0(0.0),
@@ -192,9 +193,9 @@ private:
 	double buf2;
 	double buf3;
 };
-class HP36 {
+class oneHP36 {
 public:
-  HP36() :
+  oneHP36() :
   cutoff(0.1),
   resonance(0.0),
   buf0(0.0),
@@ -222,9 +223,9 @@ private:
   double buf5;
 
 };
-class HP48 {
+class oneHP48 {
 public:
-  HP48() :
+  oneHP48() :
   cutoff(0.1),
   resonance(0.0),
   buf0(0.0),
@@ -255,9 +256,9 @@ private:
   double buf6;
   double buf7;
 };
-class Notch {
+class oneNotch {
 public:
-	Notch() :
+	oneNotch() :
 		cutoff(0.1),
 		resonance(1.0),
 		buf0(0.0),
@@ -281,9 +282,9 @@ private:
 	double buf3;
 
 };
-class Eq3{
+class oneEq3{
 public:
-  Eq3():
+  oneEq3():
     lg(1.0),
     mg(powf(powf(2.0,1/6),(-10.5))),
     hg(1.0)
@@ -296,23 +297,23 @@ public:
   double process(double inputValue);
   void set(int sampleRate);
 private:
-  LP24 lf;
-  HP24 mf1;
-  LP24 mf2;
-  HP24 hf;
+  oneLP24 lf;
+  oneHP24 mf1;
+  oneLP24 mf2;
+  oneHP24 hf;
   double lg;
   double mg;
   double hg;
 };
-class Clipper {
+class oneClipper {
 public:
 	double process(double inputValue);
 private:
 	double k;
 };
-class LFO {
+class oneLFO {
 public:
-	LFO() :
+	oneLFO() :
 		out(0.0),
 		mPI(2 * acos(0.0)),
 		mFrequency(0.00001),
@@ -333,9 +334,9 @@ private:
 	void updateIncrement();
 	double out;
 };
-class Compressor{
+class oneCompressor{
 public:
-  Compressor():
+  oneCompressor():
     peakOutput(0.0),
     peakB0Attack(1.0),
     outputGain(0.0),
@@ -367,10 +368,10 @@ private:
   double dynamicsB0;
   
 };
-class EnvelopeFollower
+class oneEnvelopeFollower
 {
 public:
-  EnvelopeFollower():
+  oneEnvelopeFollower():
     envelope(0)
   {
     set(10.0,200.0,44100);
@@ -385,9 +386,9 @@ private:
   double release;
 };
 
-class Limiter{
+class oneLimiter{
 public:
-  Limiter():
+  oneLimiter():
     attackCoeff(0.0),
     releaseCoeff(0.0),
     env(0.0),
@@ -412,9 +413,9 @@ private:
   //double* delayLine;
   double threshold;
 };
-class Gate{
+class oneGate{
 public:
-  Gate():
+  oneGate():
   releaseTime(1.5),
   sr(44100),
   threshold(powf(powf(2.0,1/6),(-54.0))),
@@ -439,7 +440,7 @@ private:
   double attack;
   double attackTime;
 };
-class Xcomp{
+class oneXcomp{
 public:
   void set(int sampleRate);
   double process(double inputValue);
@@ -459,7 +460,7 @@ private:
   double output;
 };
 
-class Xlimiter{
+class oneXlimiter{
 public:
   void set(int sampleRate);
   double process(double inputValue);
@@ -517,35 +518,69 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-    float leftNow;
-    float rightNow;
+    float leftNow=0.0;
+    float rightNow=0.0;
+    float monoNow=0.0;
+    int lastUIWidth = 200;
+    int lastUIHeight = 200;
+    float monoLevel = 0.0;
+    float l[8] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+    float r[8]= {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+    float mixleft = 0.0;
+    float mixright = 0.0;
+    /*
+     double dpleft = 0.0;
+     double dpright = 0.0;
+     double dpmono = 0.0;
+     double dpmonoLevel = 0.0;
+     double dpmixleft = 0.0;
+     double dpmixright = 0.0;
+     double dpl[8] = { 0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0 };
+     double dpr[8] = { 0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0 };
+     */
+    float FFTMagLeft[8] = { 0,0,0,0,0,0,0,0 };
+    float FFTMagRight[8] = { 0,0,0,0,0,0,0,0 };
+    float lrms = 0.0;
+    float rrms = 0.0;
+    int samplerate;
+    int blocklength;
+    ThreeBandEQ eq1;
+    ThreeBandEQ eq2;
+    //FourBandEQ eq3;
+    //FourBandEQ eq4;
+    bool fileSelected=false;
+    AudioParameterFloat* depth;
+    AudioParameterFloat* width;
+    float currentDepth;
+    float targetDepth;
+    float ramp;
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquwbsAudioProcessor)
-    Limiter monoLimiterLeft;
-    Limiter monoLimiterRight;
-    LP36 MsubLPLeft;
-    LP36 MsubLPRight;
-    HP36 MHP1Left;
-    HP36 MHP1Right;
-    LP36 MLP1Left;
-    LP36 MLP1Right;
-    LP36 MLP2Left;
-    LP36 MLP2Right;
-    HP36 SHP1Left;
-    HP36 SHP1Right;
-    LP24 SLP1Left;
-    LP24 SLP1Right;
-    LP24 LP1Left;
-    LP24 LP1Right;
-    Eq3 SEQLeft;
-    Eq3 SEQRight;
-    Limiter TLimiterLeft;
-    Limiter TLimiterRight;
-    Gate TGateLeft;
-    Gate TGateRight;
-    Limiter finalLimiterLeft;
-    Limiter finalLimiterRight;
+    oneLimiter monoLimiterLeft;
+    oneLimiter monoLimiterRight;
+    oneLP36 MsubLPLeft;
+    oneLP36 MsubLPRight;
+    oneHP36 MHP1Left;
+    oneHP36 MHP1Right;
+    oneLP36 MLP1Left;
+    oneLP36 MLP1Right;
+    oneLP36 MLP2Left;
+    oneLP36 MLP2Right;
+    oneHP36 SHP1Left;
+    oneHP36 SHP1Right;
+    oneLP24 SLP1Left;
+    oneLP24 SLP1Right;
+    oneLP24 LP1Left;
+    oneLP24 LP1Right;
+    oneEq3 SEQLeft;
+    oneEq3 SEQRight;
+    oneLimiter TLimiterLeft;
+    oneLimiter TLimiterRight;
+    oneGate TGateLeft;
+    oneGate TGateRight;
+    oneLimiter finalLimiterLeft;
+    oneLimiter finalLimiterRight;
     
     
     

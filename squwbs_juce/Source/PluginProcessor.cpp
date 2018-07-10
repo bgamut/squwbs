@@ -11,23 +11,23 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-double LP6::process(double inputValue) {
+double oneLP6::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   return buf0;
 }
-double LP12::process(double inputValue) {
+double oneLP12::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   return buf1;
 }
-double LP24::process(double inputValue) {
+double oneLP24::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   buf2 += cutoff * (buf1 - buf2);
   buf3 += cutoff * (buf2 - buf3);
   return buf3;
 }
-double LP36::process(double inputValue) {
+double oneLP36::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   buf2 += cutoff * (buf1 - buf2);
@@ -36,7 +36,7 @@ double LP36::process(double inputValue) {
   buf5 += cutoff * (buf4 - buf5);
   return buf5;
 }
-double LP48::process(double inputValue) {
+double oneLP48::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   buf2 += cutoff * (buf1 - buf2);
@@ -47,19 +47,19 @@ double LP48::process(double inputValue) {
   buf7 += cutoff * (buf6 - buf7);
   return buf7;
 }
-double HP12::process(double inputValue) {
+double oneHP12::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   return inputValue - buf1;
 }
-double HP24::process(double inputValue) {
+double oneHP24::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   buf2 += cutoff * (buf1 - buf2);
   buf3 += cutoff * (buf2 - buf3);
   return inputValue - buf3;
 }
-double HP36::process(double inputValue) {
+double oneHP36::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   buf2 += cutoff * (buf1 - buf2);
@@ -68,7 +68,7 @@ double HP36::process(double inputValue) {
   buf5 += cutoff * (buf4 - buf5);
   return inputValue - buf5;
 }
-double HP48::process(double inputValue) {
+double oneHP48::process(double inputValue) {
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   buf2 += cutoff * (buf1 - buf2);
@@ -79,37 +79,37 @@ double HP48::process(double inputValue) {
   buf7 += cutoff * (buf6 - buf7);
   return inputValue - buf7;
 }
-double Notch::process(double inputValue){
+double oneNotch::process(double inputValue){
   buf0 += cutoff * (inputValue - buf0);
   buf1 += cutoff * (buf0 - buf1);
   buf2 += cutoff * (buf1 - buf2);
   buf3 += cutoff * (buf2 - buf3);
   return inputValue - (buf0 - buf3);
 }
-void Eq3::set(int sampleRate){
+void oneEq3::set(int sampleRate){
   lf.set(250*2*sin((M_PI)/sampleRate));
   mf1.set(250*2*sin((M_PI)/sampleRate));
   mf2.set(2500*2*sin((M_PI)/sampleRate));
   hf.set(2500*2*sin((M_PI)/sampleRate));
 }
-double Eq3::process(double input){
+double oneEq3::process(double input){
   return (lg*lf.process(input))+(mg*mf2.process(mf1.process(input)))+(hg*hf.process(input));
 }
-void LFO::setFrequency(double frequency) {
+void oneLFO::setFrequency(double frequency) {
   mFrequency = frequency;
   updateIncrement();
 }
-void LFO::setSampleRate(double sampleRate){
+void oneLFO::setSampleRate(double sampleRate){
   mSampleRate = sampleRate;
   updateIncrement();
 }
-void LFO::setPhase(double Phase) {
+void oneLFO::setPhase(double Phase) {
   mPhase = Phase;
 }
-void LFO::updateIncrement() {
+void oneLFO::updateIncrement() {
   mPhaseIncrement = mFrequency * 2 * 3.141952 / mSampleRate;
 }
-double LFO::process(double inputValue) {
+double oneLFO::process(double inputValue) {
   if (inputValue == 0.0) {
     return 0.0;
   }
@@ -125,7 +125,7 @@ double LFO::process(double inputValue) {
     }
   }
 }
-double Clipper::process(double inputValue){
+double oneClipper::process(double inputValue){
   //k = inputValue*pow (atan (pow(abs (inputValue), 100)),1/100);
   //k=inputValue*pow (atan (pow(fabs (inputValue), 5)),1/13);
   //k= atan(pow((inputValue),(5/13)));
@@ -133,7 +133,7 @@ double Clipper::process(double inputValue){
   return k;
 }
 
-double Compressor::peakFinder(double inputValue){
+double oneCompressor::peakFinder(double inputValue){
   inputAbs = fabs(inputValue);
   if(inputAbs>peakOutput){
     peakfinderB0=peakfinderB0Attack;
@@ -144,7 +144,7 @@ double Compressor::peakFinder(double inputValue){
   peakOutput+=peakfinderB0*(inputAbs-peakOutput);
   return peakOutput;
 }
-void Compressor::set(double sampleRate){
+void oneCompressor::set(double sampleRate){
   fs=sampleRate;
   peakOutput=0.0;
   peakB0Attack=1.0;
@@ -157,7 +157,7 @@ void Compressor::set(double sampleRate){
   dynamicsB0Release=1.0-exp(-1.0/(dynamicsReleaseTime*fs));
   dynamicsOutputGain=0.0;
 }
-double Compressor::dynamics(double inputGain){
+double oneCompressor::dynamics(double inputGain){
   if(inputGain<dynamicsOutputGain){
     dynamicsB0=dynamicsB0Attack;
   }
@@ -167,7 +167,7 @@ double Compressor::dynamics(double inputGain){
   dynamicsOutputGain += dynamicsB0*(inputGain-dynamicsOutputGain);
   return dynamicsOutputGain;
 }
-void Gate::set(double sampleRate){
+void oneGate::set(double sampleRate){
   sr=sampleRate;
   releaseTime=0.3;
   attackTime=0.02;
@@ -177,7 +177,7 @@ void Gate::set(double sampleRate){
   //attack=1.0-exp(-1.0/(attackTime*sr));
   attack=1.0-exp(-1.0/1.0);
 }
-double Gate::process(double inputValue){
+double oneGate::process(double inputValue){
   if(tick>int(hold)){
     if(threshold>(inputValue*inputValue)){
       gain*=release;
@@ -194,19 +194,19 @@ double Gate::process(double inputValue){
   outputValue=inputValue*gain;
   return inputValue;
 }
-void EnvelopeFollower::set(double attackMs, double releaseMs, int sampleRate){
+void oneEnvelopeFollower::set(double attackMs, double releaseMs, int sampleRate){
   attack=pow( 0.01, 1.0 / ( attackMs * sampleRate * 0.001 ) );
   release=pow( 0.01, 1.0 / ( releaseMs * sampleRate * 0.001 ) );
   
 }
-void EnvelopeFollower::process(double input){
+void oneEnvelopeFollower::process(double input){
   temp=fabs(input);
   if(temp>envelope)
     envelope=attack*(envelope-temp)+temp;
   else
     envelope=release*(envelope-temp)+temp;
 }
-void Limiter::set(double attackMs, double releaseMs,double thresholdDb,int sampleRate){
+void oneLimiter::set(double attackMs, double releaseMs,double thresholdDb,int sampleRate){
   attackCoeff=exp(-1*(attackMs*double(sampleRate)*1000.0));
   releaseCoeff=exp(-1*(releaseMs*double(sampleRate)*1000.0));
   delayIndex=0;
@@ -233,7 +233,7 @@ double Limiter::process(double input){
 }
 */
 
-double Limiter::process(double input){
+double oneLimiter::process(double input){
   delayIndex=(delayIndex+1)%(2*sr);
   env = fmax(fabs(input), env);
   if (env>threshold){
@@ -249,10 +249,10 @@ double Limiter::process(double input){
   currentGain=currentGain*attackCoeff+targetGain*(1-attackCoeff);
   return (input*targetGain);
 }
-void Limiter::resetEnv(){
+void oneLimiter::resetEnv(){
   env=0.0;
 }
-void Xcomp::set(int sampleRate){
+void oneXcomp::set(int sampleRate){
   sampleRate = sampleRate;
 		fConst0 = fmin(192000.0, fmax(1000.0, double(sampleRate)));
 		fConst1 = expf((0.0 - (2500.0 / fConst0)));
@@ -269,7 +269,7 @@ void Xcomp::set(int sampleRate){
     }
   
 }
-double Xcomp::process(double input){
+double oneXcomp::process(double input){
   fTemp0=input;
   fTemp1=fabs(fTemp0);
   fTemp2 = ((fRec1[1]>fTemp1)?fConst4:fConst3);
@@ -418,6 +418,8 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     
     LP1Left.set(2*sin((M_PI)*15000.0/sampleRate));
     LP1Right.set(2*sin((M_PI)*15000.0/sampleRate));
+    eq1.setSampleRate(sampleRate);
+    eq2.setSampleRate(sampleRate);
     
 }
 
@@ -475,8 +477,11 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
                 
                 float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left*0.38)))+monoprocessed;
                 float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.38)))+monoprocessed;
-                main.setSample(0, j, finalLimiterLeft.process((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0));
-                main.setSample(1, j, finalLimiterRight.process((TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0));
+                leftNow = abs(mixleft);
+                rightNow = abs(mixright);
+                monoNow = (leftNow+rightNow)/2.0;
+                main.setSample(0, j, finalLimiterLeft.process(eq1.match((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0,(TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0)[0]));
+                main.setSample(1, j, finalLimiterRight.process(eq1.match((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0,(TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0)[1]));
 
             }
         }
@@ -500,11 +505,11 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
                 
                 float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left*0.38)))+monoprocessed;
                 float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.38)))+monoprocessed;
-                float leftNow = abs(left);
-                float rightNow = abs(right);
-                main.setSample(0, j, finalLimiterLeft.process((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0));
-                main.setSample(1, j, finalLimiterRight.process((TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0));
-            }
+                leftNow = abs(mixleft);
+                rightNow = abs(mixright);
+                monoNow = (leftNow+rightNow)/2.0;
+                main.setSample(0, j, finalLimiterLeft.process(eq1.match((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0,(TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0)[0]));
+                main.setSample(1, j, finalLimiterRight.process(eq1.match((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0,(TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0)[1]));            }
         }
     }
 }

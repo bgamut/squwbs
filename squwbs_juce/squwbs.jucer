@@ -3,6 +3,33 @@
 <JUCERPROJECT id="XI7uu2" name="squwbs" projectType="audioplug" jucerVersion="5.3.2">
   <MAINGROUP id="aZrqZt" name="squwbs">
     <GROUP id="{1CB7B479-7029-3F67-99A4-ADD8931D7179}" name="Source">
+      <FILE id="Q31jch" name="AllpassDelay.h" compile="0" resource="0" file="Source/AllpassDelay.h"/>
+      <FILE id="GNm2Jg" name="basic_functions.h" compile="0" resource="0"
+            file="Source/basic_functions.h"/>
+      <FILE id="IoliCK" name="chooser.cpp" compile="1" resource="0" file="Source/chooser.cpp"/>
+      <FILE id="kDGKxM" name="chooser.h" compile="0" resource="0" file="Source/chooser.h"/>
+      <FILE id="DMeYHK" name="click.cpp" compile="1" resource="0" file="Source/click.cpp"/>
+      <FILE id="wtvM0f" name="click.h" compile="0" resource="0" file="Source/click.h"/>
+      <FILE id="E5koNH" name="Clipper.h" compile="0" resource="0" file="Source/Clipper.h"/>
+      <FILE id="QEO0l0" name="cone.h" compile="0" resource="0" file="Source/cone.h"/>
+      <FILE id="pCPAa1" name="FourBandEQ.h" compile="0" resource="0" file="Source/FourBandEQ.h"/>
+      <FILE id="yEjqmk" name="Gate.h" compile="0" resource="0" file="Source/Gate.h"/>
+      <FILE id="jS02bc" name="HP12.h" compile="0" resource="0" file="Source/HP12.h"/>
+      <FILE id="QgqU6b" name="HP24.h" compile="0" resource="0" file="Source/HP24.h"/>
+      <FILE id="eZrSmF" name="HP36.h" compile="0" resource="0" file="Source/HP36.h"/>
+      <FILE id="X0RSO1" name="Logo.png" compile="0" resource="1" file="Source/Logo.png"/>
+      <FILE id="r29SwT" name="logoButton.h" compile="0" resource="0" file="Source/logoButton.h"/>
+      <FILE id="V26dkN" name="LP12.h" compile="0" resource="0" file="Source/LP12.h"/>
+      <FILE id="Ft9RNp" name="LP24.h" compile="0" resource="0" file="Source/LP24.h"/>
+      <FILE id="qM1IP9" name="LP36.h" compile="0" resource="0" file="Source/LP36.h"/>
+      <FILE id="f14p3W" name="Mayer_FFT.c" compile="1" resource="0" file="Source/Mayer_FFT.c"/>
+      <FILE id="skSLm7" name="Notch12.h" compile="0" resource="0" file="Source/Notch12.h"/>
+      <FILE id="HZEdYS" name="Phaser.h" compile="0" resource="0" file="Source/Phaser.h"/>
+      <FILE id="nwqf1T" name="Speaker.cpp" compile="1" resource="0" file="Source/Speaker.cpp"/>
+      <FILE id="noVbHl" name="Speaker.h" compile="0" resource="0" file="Source/Speaker.h"/>
+      <FILE id="spLdRi" name="ThreeBandEQ.h" compile="0" resource="0" file="Source/ThreeBandEQ.h"/>
+      <FILE id="Wvj53l" name="tinyLogo.png" compile="0" resource="1" file="Source/tinyLogo.png"/>
+      <FILE id="hBpLCk" name="vectorscope.h" compile="0" resource="0" file="Source/vectorscope.h"/>
       <FILE id="vsTtX0" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="KkfkvR" name="PluginProcessor.h" compile="0" resource="0"
