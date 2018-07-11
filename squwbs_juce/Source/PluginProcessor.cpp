@@ -368,14 +368,14 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    monoLimiterLeft.set(0.00001,400.0,-24.0,sampleRate);
-    monoLimiterRight.set(0.00001,400.0,-24.0,sampleRate);
+    monoLimiterLeft.set(0.00001,1500.0,-24.0,sampleRate);
+    monoLimiterRight.set(0.00001,1500.0,-24.0,sampleRate);
     
-    TLimiterLeft.set(0.00001,400.0,-24.0,sampleRate);
-    TLimiterRight.set(0.00001,400.0,-24.0,sampleRate);
+    TLimiterLeft.set(0.00001,1500.0,-24.0,sampleRate);
+    TLimiterRight.set(0.00001,1500.0,-24.0,sampleRate);
     
-    finalLimiterLeft.set(0.00001,400.0,-6.0,sampleRate);
-    finalLimiterRight.set(0.00001,400.0,-6.0,sampleRate);
+    finalLimiterLeft.set(0.00001,1500.0,-6.0,sampleRate);
+    finalLimiterRight.set(0.00001,1500.0,-6.0,sampleRate);
     
     MsubLPLeft.set(2*sin((M_PI)*750.0/sampleRate));
     MsubLPRight.set(2*sin((M_PI)*750.0/sampleRate));
@@ -478,11 +478,12 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
                 float mixleft = SEQLeft.process  (SLP1Left.process (SHP1Left.process (left*0.38 )))+monoprocessed;
                 float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.38)))+monoprocessed;
                 
-                leftNow = abs(mixleft);
-                rightNow = abs(mixright);
-                monoNow = (leftNow+rightNow)/2.0;
-                main.setSample(0, j, finalLimiterLeft.process ((TGateLeft.process(mixleft)+TLimiterLeft.process (mixleft ))));
-                main.setSample(1, j, finalLimiterRight.process((TGateLeft.process(mixright)+TLimiterLeft.process(mixright))));
+                //float* sample = eq1.match(,);
+                leftNow = (TGateLeft.process(mixleft)+TLimiterLeft.process (mixleft ));
+                rightNow = (TGateLeft.process(mixright)+TLimiterLeft.process(mixright));
+                monoNow = (abs(leftNow)+abs(rightNow))/2.0;
+                main.setSample(0, j, finalLimiterLeft.process (leftNow/2.0));
+                main.setSample(1, j, finalLimiterRight.process(rightNow/2.0));
 
             }
         }
@@ -506,11 +507,12 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
                 
                 float mixleft  =  SEQLeft.process(SLP1Left.process (SHP1Left.process (left*0.38 )))+monoprocessed;
                 float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.38)))+monoprocessed;
-                leftNow = abs(mixleft);
-                rightNow = abs(mixright);
-                monoNow = (leftNow+rightNow)/2.0;
-                main.setSample(0, j, finalLimiterLeft.process ((TGateLeft.process(mixleft) +TLimiterLeft.process(mixleft ))));
-                main.setSample(1, j, finalLimiterRight.process((TGateLeft.process(mixright)+TLimiterLeft.process(mixright))));
+                //float* sample = eq1.match(,);
+                leftNow = (TGateLeft.process(mixleft)+TLimiterLeft.process (mixleft ));
+                rightNow = (TGateLeft.process(mixright)+TLimiterLeft.process(mixright));
+                monoNow = (abs(leftNow)+abs(rightNow))/2.0;
+                main.setSample(0, j, finalLimiterLeft.process (leftNow/2.0));
+                main.setSample(1, j, finalLimiterRight.process(rightNow/2.0));
                 
             }
         }
