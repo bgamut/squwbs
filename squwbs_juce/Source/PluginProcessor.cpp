@@ -374,14 +374,14 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     TLimiterLeft.set(0.00001,400.0,-24.0,sampleRate);
     TLimiterRight.set(0.00001,400.0,-24.0,sampleRate);
     
-    finalLimiterLeft.set(0.00001,400.0,-0.3,sampleRate);
-    finalLimiterRight.set(0.00001,400.0,-0.3,sampleRate);
+    finalLimiterLeft.set(0.00001,400.0,-6.0,sampleRate);
+    finalLimiterRight.set(0.00001,400.0,-6.0,sampleRate);
     
     MsubLPLeft.set(2*sin((M_PI)*750.0/sampleRate));
     MsubLPRight.set(2*sin((M_PI)*750.0/sampleRate));
     
-    MHP1Left.set(2*sin((M_PI)*40.3/sampleRate));
-    MHP1Right.set(2*sin((M_PI)*40.3/sampleRate));
+    MHP1Left.set(2*sin((M_PI)*40.0/sampleRate));
+    MHP1Right.set(2*sin((M_PI)*40.0/sampleRate));
     
     MHP1Left.calculateFeedbackAmount();
     MHP1Right.calculateFeedbackAmount();
@@ -475,13 +475,14 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
             
             {
                 
-                float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left*0.38)))+monoprocessed;
+                float mixleft = SEQLeft.process  (SLP1Left.process (SHP1Left.process (left*0.38 )))+monoprocessed;
                 float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.38)))+monoprocessed;
+                
                 leftNow = abs(mixleft);
                 rightNow = abs(mixright);
                 monoNow = (leftNow+rightNow)/2.0;
-                main.setSample(0, j, finalLimiterLeft.process(eq1.match((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0,(TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0)[0]));
-                main.setSample(1, j, finalLimiterRight.process(eq1.match((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0,(TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0)[1]));
+                main.setSample(0, j, finalLimiterLeft.process ((TGateLeft.process(mixleft)+TLimiterLeft.process (mixleft ))));
+                main.setSample(1, j, finalLimiterRight.process((TGateLeft.process(mixright)+TLimiterLeft.process(mixright))));
 
             }
         }
@@ -503,13 +504,15 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
             
             {
                 
-                float mixleft = SEQLeft.process(SLP1Left.process(SHP1Left.process(left*0.38)))+monoprocessed;
+                float mixleft  =  SEQLeft.process(SLP1Left.process (SHP1Left.process (left*0.38 )))+monoprocessed;
                 float mixright = SEQRight.process(SLP1Right.process(SHP1Right.process(right*0.38)))+monoprocessed;
                 leftNow = abs(mixleft);
                 rightNow = abs(mixright);
                 monoNow = (leftNow+rightNow)/2.0;
-                main.setSample(0, j, finalLimiterLeft.process(eq1.match((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0,(TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0)[0]));
-                main.setSample(1, j, finalLimiterRight.process(eq1.match((TGateLeft.process(mixleft)+TLimiterLeft.process(mixleft))/4.0,(TGateRight.process(mixright)+TLimiterRight.process(mixright))/4.0)[1]));            }
+                main.setSample(0, j, finalLimiterLeft.process ((TGateLeft.process(mixleft) +TLimiterLeft.process(mixleft ))));
+                main.setSample(1, j, finalLimiterRight.process((TGateLeft.process(mixright)+TLimiterLeft.process(mixright))));
+                
+            }
         }
     }
 }
