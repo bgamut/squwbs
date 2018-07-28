@@ -368,6 +368,8 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    preLPLeft.set(2*sin((M_PI)*10000.0/sampleRate));
+    preLPRight.set(2*sin((M_PI)*10000.0/sampleRate));
     monoLimiterLeft.set(0.00001,1500.0,-24.0,sampleRate);
     monoLimiterRight.set(0.00001,1500.0,-24.0,sampleRate);
     
@@ -465,8 +467,8 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
         {
             
             
-            float left = main.getSample(0, j);
-            float right = main.getSample(0, j);
+            float left = preLPLeft.process(main.getSample(0, j));
+            float right = preLPRight.process(main.getSample(0, j));
             
             float mono = monoLimiterLeft.process((left + right)/ 2.0);
             float monoprocessed = MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
@@ -495,8 +497,8 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
         for (int j = 0; j<main.getNumSamples(); ++j)
         {
             
-            float left = main.getSample(0, j);
-            float right = main.getSample(1, j);
+            float left = preLPLeft.process(main.getSample(0, j));
+            float right = preLPRight.process(main.getSample(1, j));
 
             float mono = monoLimiterLeft.process((left + right)/ 2.0);
             float monoprocessed = MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));

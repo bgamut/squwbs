@@ -557,6 +557,8 @@ public:
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquwbsAudioProcessor)
+    oneLP12 preLPLeft;
+    oneLP12 preLPRight;
     oneLimiter monoLimiterLeft;
     oneLimiter monoLimiterRight;
     oneLP36 MsubLPLeft;
