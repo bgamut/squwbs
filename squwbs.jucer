@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="XI7uu2" name="squwbs" projectType="audioplug" jucerVersion="5.3.2"
-<<<<<<< HEAD:squwbs_juce/squwbs.jucer
+<JUCERPROJECT id="jgGW5l" name="squwbs" projectType="audioplug" jucerVersion="5.3.2"
               pluginFormats="buildAAX,buildAU,buildAUv3,buildRTAS,buildStandalone,buildVST,buildVST3,enableIAA"
-              pluginManufacturer="squwbs" aaxIdentifier="com.squwbs.squwbs">
-=======
-              companyName="squwbs">
->>>>>>> c17a147bec72edb65dc54111bae5cba78d8d64e0:squwbs.jucer
-  <MAINGROUP id="aZrqZt" name="squwbs">
-    <GROUP id="{1CB7B479-7029-3F67-99A4-ADD8931D7179}" name="Source">
-      <FILE id="Q31jch" name="AllpassDelay.h" compile="0" resource="0" file="Source/AllpassDelay.h"/>
-      <FILE id="GNm2Jg" name="basic_functions.h" compile="0" resource="0"
+              bundleIdentifier="com.squwbs.squwbs" version="1.0.0" companyName="squwbs"
+              companyWebsite="squwbs.com" companyEmail="bernardahn@squwbs.com"
+              companyCopyright="opensource" pluginName="squwbs" pluginDesc="squwbs"
+              pluginManufacturer="squwbs" aaxIdentifier="com.squwbs.squwbs"
+              pluginAUExportPrefix="squwbsAU" pluginRTASCategory="8192" pluginAAXCategory="8192">
+  <MAINGROUP id="b8Se7I" name="squwbs">
+    <GROUP id="{9DFE7A48-3584-EF9F-9FD2-059730FD00CB}" name="Source">
+      <FILE id="w49ub1" name="AllpassDelay.h" compile="0" resource="0" file="Source/AllpassDelay.h"/>
+      <FILE id="b5EMwY" name="basic_functions.h" compile="0" resource="0"
             file="Source/basic_functions.h"/>
-      <FILE id="IoliCK" name="chooser.cpp" compile="1" resource="0" file="Source/chooser.cpp"/>
-      <FILE id="kDGKxM" name="chooser.h" compile="0" resource="0" file="Source/chooser.h"/>
-      <FILE id="DMeYHK" name="click.cpp" compile="1" resource="0" file="Source/click.cpp"/>
-      <FILE id="wtvM0f" name="click.h" compile="0" resource="0" file="Source/click.h"/>
-      <FILE id="E5koNH" name="Clipper.h" compile="0" resource="0" file="Source/Clipper.h"/>
-      <FILE id="QEO0l0" name="cone.h" compile="0" resource="0" file="Source/cone.h"/>
-      <FILE id="pCPAa1" name="FourBandEQ.h" compile="0" resource="0" file="Source/FourBandEQ.h"/>
-      <FILE id="yEjqmk" name="Gate.h" compile="0" resource="0" file="Source/Gate.h"/>
-      <FILE id="jS02bc" name="HP12.h" compile="0" resource="0" file="Source/HP12.h"/>
-      <FILE id="QgqU6b" name="HP24.h" compile="0" resource="0" file="Source/HP24.h"/>
-      <FILE id="eZrSmF" name="HP36.h" compile="0" resource="0" file="Source/HP36.h"/>
-      <FILE id="X0RSO1" name="Logo.png" compile="0" resource="1" file="Source/Logo.png"/>
-      <FILE id="r29SwT" name="logoButton.h" compile="0" resource="0" file="Source/logoButton.h"/>
-      <FILE id="V26dkN" name="LP12.h" compile="0" resource="0" file="Source/LP12.h"/>
-      <FILE id="Ft9RNp" name="LP24.h" compile="0" resource="0" file="Source/LP24.h"/>
-      <FILE id="qM1IP9" name="LP36.h" compile="0" resource="0" file="Source/LP36.h"/>
-      <FILE id="f14p3W" name="Mayer_FFT.c" compile="1" resource="0" file="Source/Mayer_FFT.c"/>
-      <FILE id="skSLm7" name="Notch12.h" compile="0" resource="0" file="Source/Notch12.h"/>
-      <FILE id="HZEdYS" name="Phaser.h" compile="0" resource="0" file="Source/Phaser.h"/>
-      <FILE id="nwqf1T" name="Speaker.cpp" compile="1" resource="0" file="Source/Speaker.cpp"/>
-      <FILE id="noVbHl" name="Speaker.h" compile="0" resource="0" file="Source/Speaker.h"/>
-      <FILE id="spLdRi" name="ThreeBandEQ.h" compile="0" resource="0" file="Source/ThreeBandEQ.h"/>
-      <FILE id="Wvj53l" name="tinyLogo.png" compile="0" resource="1" file="Source/tinyLogo.png"/>
-      <FILE id="hBpLCk" name="vectorscope.h" compile="0" resource="0" file="Source/vectorscope.h"/>
-      <FILE id="vsTtX0" name="PluginProcessor.cpp" compile="1" resource="0"
+      <FILE id="f53661" name="chooser.cpp" compile="1" resource="0" file="Source/chooser.cpp"/>
+      <FILE id="wqVRKr" name="chooser.h" compile="0" resource="0" file="Source/chooser.h"/>
+      <FILE id="JxZzc2" name="click.cpp" compile="1" resource="0" file="Source/click.cpp"/>
+      <FILE id="P4x9NE" name="click.h" compile="0" resource="0" file="Source/click.h"/>
+      <FILE id="gk6RtP" name="Clipper.h" compile="0" resource="0" file="Source/Clipper.h"/>
+      <FILE id="hiQzU9" name="cone.h" compile="0" resource="0" file="Source/cone.h"/>
+      <FILE id="Iow30h" name="FourBandEQ.h" compile="0" resource="0" file="Source/FourBandEQ.h"/>
+      <FILE id="TVLbeo" name="Gate.h" compile="0" resource="0" file="Source/Gate.h"/>
+      <FILE id="elW5cz" name="HP12.h" compile="0" resource="0" file="Source/HP12.h"/>
+      <FILE id="z51eag" name="HP24.h" compile="0" resource="0" file="Source/HP24.h"/>
+      <FILE id="jrr6sb" name="HP36.h" compile="0" resource="0" file="Source/HP36.h"/>
+      <FILE id="bJYVsl" name="Logo.png" compile="0" resource="1" file="Source/Logo.png"/>
+      <FILE id="FhoXL2" name="logoButton.h" compile="0" resource="0" file="Source/logoButton.h"/>
+      <FILE id="gCEyrn" name="LP12.h" compile="0" resource="0" file="Source/LP12.h"/>
+      <FILE id="lMH5CL" name="LP24.h" compile="0" resource="0" file="Source/LP24.h"/>
+      <FILE id="YcrcSi" name="LP36.h" compile="0" resource="0" file="Source/LP36.h"/>
+      <FILE id="XY1lKX" name="Mayer_FFT.c" compile="1" resource="0" file="Source/Mayer_FFT.c"/>
+      <FILE id="HOg2ri" name="Notch12.h" compile="0" resource="0" file="Source/Notch12.h"/>
+      <FILE id="DYbycl" name="Phaser.h" compile="0" resource="0" file="Source/Phaser.h"/>
+      <FILE id="vyaa1F" name="Speaker.cpp" compile="1" resource="0" file="Source/Speaker.cpp"/>
+      <FILE id="qEZyLR" name="Speaker.h" compile="0" resource="0" file="Source/Speaker.h"/>
+      <FILE id="xRpTQk" name="ThreeBandEQ.h" compile="0" resource="0" file="Source/ThreeBandEQ.h"/>
+      <FILE id="bWSeMy" name="tinyLogo.png" compile="0" resource="1" file="Source/tinyLogo.png"/>
+      <FILE id="SkjSV6" name="vectorscope.h" compile="0" resource="0" file="Source/vectorscope.h"/>
+      <FILE id="cKhiOP" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
-      <FILE id="KkfkvR" name="PluginProcessor.h" compile="0" resource="0"
+      <FILE id="pVT29F" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
-      <FILE id="gwtdYf" name="PluginEditor.cpp" compile="1" resource="0"
+      <FILE id="AElZ7x" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="ztVxMR" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="fOO5Y6" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" vst3Folder="" aaxFolder="" rtasFolder="">
+    <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <XCODE_IPHONE targetFolder="Builds/iOS">
@@ -75,21 +75,21 @@
         <CONFIGURATION isDebug="0" name="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_video" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../Applications/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../../DEV/SOFTWARE/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_IPHONE>
   </EXPORTFORMATS>

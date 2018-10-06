@@ -77,11 +77,7 @@ public:
         //alpha=sin(float_Pi*input/2.0);
     }
     void doubleClick(){
-<<<<<<< HEAD:squwbs_juce/Source/logoButton.h
-    /*
-=======
-        /*
->>>>>>> c17a147bec72edb65dc54111bae5cba78d8d64e0:Source/logoButton.h
+/*
         chooser.loadFile();
         midhighrms=chooser.threeband.midhighrms;
         midmidrms=chooser.threeband.midmidrms;
@@ -95,7 +91,7 @@ public:
         sidehighsd=chooser.threeband.sidehighsd;
         sidemidsd=chooser.threeband.sidemidsd;
         sidelowsd=chooser.threeband.sidelowsd;
-        */
+        
         
         std::cout<<String(midhighrms,3)<<", "<<String(midmidrms,3)<<", "<<String(midlowrms,3)<<", "<<String(sidehighrms,3)<<", "<<String(sidemidrms,3)<<", "<<String(sidelowrms,3)<<", "<<String(midhighsd,3)<<", "<<String(midmidsd,3)<<", "<<String(midlowsd,3)<<", "<<String(sidehighsd,3)<<", "<<String(sidemidsd,3)<<", "<<String(sidelowsd,3)<<std::endl;
         //std::cout<<String(1.0-(sidehighrms+sidehighsd),3)<<", "<<String(1.0-(sidemidrms+sidemidsd,3))<<", "<<String(1.0-(sidelowrms+sidelowsd,3))<<", "<<String(1.0-(midhighrms+midhighsd),3)<<", "<<String(1.0-(midmidrms+midmidsd),3)<<", "<<String(1.0-(midlowrms+midlowsd),3)<<", "<<String(1.0-(sidehighrms+sidehighsd),3)<<", "<<String(1.0-(sidemidrms+sidemidsd),3)<<", "<<String(1.0-(sidelowrms+sidelowsd),3)<<std::endl;
