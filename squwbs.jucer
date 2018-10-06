@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="XI7uu2" name="squwbs" projectType="audioplug" jucerVersion="5.3.2"
+<<<<<<< HEAD:squwbs_juce/squwbs.jucer
               pluginFormats="buildAAX,buildAU,buildAUv3,buildRTAS,buildStandalone,buildVST,buildVST3,enableIAA"
               pluginManufacturer="squwbs" aaxIdentifier="com.squwbs.squwbs">
+=======
+              companyName="squwbs">
+>>>>>>> c17a147bec72edb65dc54111bae5cba78d8d64e0:squwbs.jucer
   <MAINGROUP id="aZrqZt" name="squwbs">
     <GROUP id="{1CB7B479-7029-3F67-99A4-ADD8931D7179}" name="Source">
       <FILE id="Q31jch" name="AllpassDelay.h" compile="0" resource="0" file="Source/AllpassDelay.h"/>

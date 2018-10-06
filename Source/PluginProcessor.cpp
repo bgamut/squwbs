@@ -470,7 +470,7 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
             float left = preLPLeft.process(main.getSample(0, j));
             float right = preLPRight.process(main.getSample(0, j));
             
-            float mono = monoLimiterLeft.process((left + right)/ 2.0);
+            float mono = monoLimiterLeft.process((left + right)*0.35481338923357547/ 2.0);
             float monoprocessed = MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
             left = left - mono;
             right = right - mono;
