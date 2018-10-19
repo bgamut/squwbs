@@ -583,7 +583,14 @@ private:
     oneGate TGateRight;
     oneLimiter finalLimiterLeft;
     oneLimiter finalLimiterRight;
-    
+    oneHP48 preHPOneLeft;
+    oneHP48 preHPOneRight;
+    oneHP12 preHPTwoLeft;
+    oneHP12 preHPTwoRight;
+    oneLP12 preLPOneLeft;
+    oneLP12 preLPOneRight;
+    oneLP24 preLPTwoLeft;
+    oneLP24 preLPTwoRight;
     
     
     

@@ -423,6 +423,19 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     eq1.setSampleRate(sampleRate);
     eq2.setSampleRate(sampleRate);
     
+    preHPOneLeft.set(2*sin((M_PI)*33.0/sampleRate));
+    preHPOneRight.set(2*sin((M_PI)*33.0/sampleRate));
+    preHPTwoLeft.set(2*sin((M_PI)*75.0/sampleRate));
+    preHPTwoRight.set(2*sin((M_PI)*75.0/sampleRate));
+    preLPOneLeft.set(2*sin((M_PI)*2500.0/sampleRate));
+    preLPOneRight.set(2*sin((M_PI)*2500.0/sampleRate));
+    preLPTwoLeft.set(2*sin((M_PI)*7000.0/sampleRate));
+    preLPTwoRight.set(2*sin((M_PI)*7000.0/sampleRate));
+    
+    
+    
+    
+    
 }
 
 void SquwbsAudioProcessor::releaseResources()
@@ -467,8 +480,8 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
         {
             
             
-            float left = preLPLeft.process(main.getSample(0, j));
-            float right = preLPRight.process(main.getSample(0, j));
+            float left = preLPTwoLeft.process(preLPOneLeft.process(preHPTwoLeft.process(preHPOneLeft.process(preLPLeft.process(main.getSample(0, j))))));
+            float right = preLPTwoRight.process(preLPOneRight.process(preHPTwoRight.process(preHPOneRight.process(preLPRight.process(main.getSample(0, j))))));
             
             float mono = monoLimiterLeft.process((left + right)*0.35481338923357547/ 2.0);
             float monoprocessed = MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
@@ -496,9 +509,8 @@ void SquwbsAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer&
     {
         for (int j = 0; j<main.getNumSamples(); ++j)
         {
-            
-            float left = preLPLeft.process(main.getSample(0, j));
-            float right = preLPRight.process(main.getSample(1, j));
+            float left = preLPTwoLeft.process(preLPOneLeft.process(preHPTwoLeft.process(preHPOneLeft.process(preLPLeft.process(main.getSample(0, j))))));
+            float right = preLPTwoRight.process(preLPOneRight.process(preHPTwoRight.process(preHPOneRight.process(preLPRight.process(main.getSample(1, j))))));
 
             float mono = monoLimiterLeft.process((left + right)/ 2.0);
             float monoprocessed = MLP2Right.process(MLP1Right.process(MHP1Left.process(MsubLPLeft.process(mono)+mono)));
