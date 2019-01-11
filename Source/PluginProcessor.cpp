@@ -368,6 +368,13 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    /*
+    AudioDeviceManager deviceManager;
+    AudioDeviceManager::AudioDeviceSetup deviceSetup = AudioDeviceManager::AudioDeviceSetup();
+    deviceSetup.sampleRate = sampleRate;
+    deviceManager.initialise (2,2,0,true,String::empty,&deviceSetup);
+    deviceSetup.useDefaultInputChannels=true;
+    */
     preLPLeft.set(2*sin((M_PI)*10000.0/sampleRate));
     preLPRight.set(2*sin((M_PI)*10000.0/sampleRate));
     monoLimiterLeft.set(0.00001,1500.0,-24.0,sampleRate);
@@ -423,8 +430,8 @@ void SquwbsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     eq1.setSampleRate(sampleRate);
     eq2.setSampleRate(sampleRate);
     
-    preHPOneLeft.set(2*sin((M_PI)*33.0/sampleRate));
-    preHPOneRight.set(2*sin((M_PI)*33.0/sampleRate));
+    preHPOneLeft.set(2*sin((M_PI)*44.0/sampleRate));
+    preHPOneRight.set(2*sin((M_PI)*44.0/sampleRate));
     preHPTwoLeft.set(2*sin((M_PI)*75.0/sampleRate));
     preHPTwoRight.set(2*sin((M_PI)*75.0/sampleRate));
     preLPOneLeft.set(2*sin((M_PI)*2500.0/sampleRate));

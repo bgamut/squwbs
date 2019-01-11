@@ -591,7 +591,7 @@ private:
     oneLP12 preLPOneRight;
     oneLP24 preLPTwoLeft;
     oneLP24 preLPTwoRight;
-    
+    AudioDeviceManager manager;
     
     
 };
