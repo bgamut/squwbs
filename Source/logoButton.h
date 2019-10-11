@@ -19,16 +19,18 @@ class logoButton    : public Component
 {
 public:
     logoButton()
-    //:convolver(16)
+    :convolver(16)
     {
         // In your constructor, you should add any child components, and
         // initialise any special settings that your component needs.
         //logoComponent.setImage(logo);
-        logoShadow.colour=Colour((uint8)256,(uint8)256,(uint8)256,(uint8)256);
-        logoShadow.radius=0.5;
+        //logoShadow.colour=Colour((uint8)256,(uint8)256,(uint8)256,(uint8)256);
+        logoShadow.colour=Colour((uint8)128,(uint8)128,(uint8)128,(uint8)128);
+        logoShadow.radius=8;
         logoShadow.offset=Point <int> (0.0,0.0);
         //addChildComponent(logoComponent);
         //glow.setGlowProperties(2.0,Colours::grey,Point<int>(0,0));
+//        glow.setGlowProperties(2.0,Colour((uint8)128,(uint8)128,(uint8)128,(uint8)128),Point<int>(0,0));
     }
 
     ~logoButton()
@@ -43,14 +45,17 @@ public:
         area.setBounds(local.getCentreX()-min/2,local.getCentreY()-min/2,min,min);
         logoArea=area.reduced(min*5/32);
         //g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   // clear the background
-        g.setColour (Colours::grey);
+        //g.setColour (Colours::grey);
+        //g.fillAll(Colour(135,135,135));
         //g.drawRect (getLocalBounds(), 1);
         //g.drawRect (area);// draw an outline around the component
-        //g.drawRect (logoArea);
-        logoShadow.drawForRectangle(g,logoArea);
-        //glow.applyEffect(logo,g,1,255);
-        g.setColour (Colours::white);
-        g.drawImage(logo,logoArea.getX(),logoArea.getY(),logoArea.getWidth(),logoArea.getHeight(),0,0,209,209,false);
+        g.setColour(Colour(135,135,135));
+        g.drawRect (logoArea);
+        logoShadow.drawForRectangle(g,logoArea.reduced(6));
+//        glow.applyEffect(logo,g,1,255);
+        //g.setColour (Colours::white);
+       // g.setColour(Colour(135,135,135));
+       g.drawImage(logo,logoArea.getX(),logoArea.getY(),logoArea.getWidth(),logoArea.getHeight(),0,0,209,209,false);
         
         g.setFont (14.0f);
         //convolver.applyToImage(logo,logo,logoArea);
@@ -71,8 +76,11 @@ public:
         doubleClicked=false;
     }
     void load(float input) {
-        int range = 12;
-        uint8 number = (uint8)(256.0-range+abs(sin(float_Pi*input/2.0))*range);
+        int range = 120;
+        
+        //uint8 number = (uint8)(256.0-range+abs(sin(float_Pi*input/2.0))*range);
+        //uint8 number = (uint8)(135+abs(sin(float_Pi*input/2.0))*range);
+        uint8 number = (uint8)(135+abs(input/2.0)*range);
         logoShadow.colour=Colour(number,number,number);
         //alpha=sin(float_Pi*input/2.0);
     }
@@ -104,8 +112,8 @@ public:
     Rectangle <int> local;
     Rectangle <int> logoArea;
     DropShadow logoShadow;
-    //GlowEffect glow;
-    //ImageConvolutionKernel convolver;
+    GlowEffect glow;
+    ImageConvolutionKernel convolver;
     //ImageComponent logoComponent;
     Image logo = ImageCache::getFromMemory(BinaryData::tinyLogo_png, BinaryData::tinyLogo_pngSize);
     chooser chooser;
