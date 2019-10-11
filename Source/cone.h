@@ -58,12 +58,13 @@ public:
         
 
         //g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   
-        g.setColour (Colour(164,164,164));
+        g.setColour (Colour(255,255,255));
         //g.drawRect (local, 1);
         //g.drawRect(area,1);
-        g.setColour (Colours::white);
+        //g.setColour (Colour(135,135,135));
         g.fillEllipse(circle1);
-        g.setColour (Colour(164,164,164));
+        //g.setColour (Colour(255,255,255));
+        g.setColour (Colour(135,135,135));
         g.drawEllipse(circle1,2.0);
         g.drawEllipse(circle2,2.0);
         g.setFont (14.0f);
