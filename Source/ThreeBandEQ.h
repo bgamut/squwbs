@@ -17,6 +17,7 @@
 #include "Gate.h"
 #include "Phaser.h"
 #include "LP24.h"
+#include "Linkwitz_Riley.h"
 //==============================================================================
 /*
 
@@ -580,7 +581,7 @@ float matchBox(float input, float originalRms, float targetRms, float sd1, float
     float maximum;
 	int index;
 private:
-
+    /*
     LP12 leftLPL;
 	LP12 rightLPL;
 	LP12 midLPL;
@@ -606,18 +607,41 @@ private:
 	HP12 leftHPH;
 	HP12 rightHPH;
 	HP12 midHPH;
+    */
+    L_Riley_LP leftLPL;
+    L_Riley_LP rightLPL;
+    L_Riley_LP midLPL;
+    
+    L_Riley_LP leftLPM1;
+    L_Riley_LP leftLPM2;
+    L_Riley_LP rightLPM1;
+    L_Riley_LP rightLPM2;
+    L_Riley_LP midLPM;
+    
+    L_Riley_LP leftLP;
+    L_Riley_LP rightLP;
+    L_Riley_LP midLP;
+    
+    L_Riley_HP midHP;
+    L_Riley_HP leftHP;
+    L_Riley_HP rightHP;
+    
+    L_Riley_HP leftHPM;
+    L_Riley_HP rightHPM;
+    L_Riley_HP midHPM;
+    
+    L_Riley_HP leftHPH;
+    L_Riley_HP rightHPH;
+    L_Riley_HP midHPH;
+    
+    
 	Gate gate1;
 	Gate gate2;
     Gate gate3;
-    //Gate gate4;
-    //Gate gate5;
-    //Gate gate6;
-    //Gate gate7;
-    //Gate gate8;
-    //Gate gate9;
 	Phaser phaser1;
 	Phaser phaser2;
 	Clipper clipper1;
 	Clipper clipper2;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ThreeBandEQ)
 };
