@@ -53,24 +53,29 @@ std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>& n)
 }
 //==============================================================================
 SquwbsAudioProcessorEditor::SquwbsAudioProcessorEditor (SquwbsAudioProcessor& owner)
-    : AudioProcessorEditor (owner)
+    : AudioProcessorEditor (&owner),audioProcessor(owner)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    otherLookAndFeel.setColour(Slider::thumbColourId, juce::Colours::transparentBlack);
+    mixSlider.setColour(Slider::thumbColourId, juce::Colours::transparentBlack);
     //otherLookAndFeel.setColour(Slider::thumbColourId, juce::Colour(248,248,248));
         //otherLookAndFeel.setColour(Slider::backgroundColourId, Colour(135, 135, 135));
-    otherLookAndFeel.setColour(Slider::backgroundColourId, Colour(135,135,135));
+    mixSlider.setColour(Slider::backgroundColourId, Colour(135,135,135));
     //otherLookAndFeel.setColour(Slider::trackColourId, Colour(248, 248, 248));
-    otherLookAndFeel.setColour(Slider::trackColourId, Colour(135,135,135));
-    otherLookAndFeel.setColour(Slider::rotarySliderFillColourId, Colour(75,75,75));
-    otherLookAndFeel.setColour(Slider::rotarySliderOutlineColourId, Colour(186,186,186));
+    mixSlider.setColour(Slider::trackColourId, Colour(135,135,135));
+    mixSlider.setColour(Slider::rotarySliderFillColourId, Colour(75,75,75));
+    mixSlider.setColour(Slider::rotarySliderOutlineColourId, Colour(186,186,186));
+    mixSlider.setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
+    mixSlider.setRange(0.0,100.0,0.1);
+    mixSlider.setTextBoxStyle(juce::Slider::NoTextBox,false,0,0);
+    mixSlider.setValue(100.0);
+    addAndMakeVisible(mixSlider);
     setResizeLimits(100, 100, 3840, 2240);
     setResizable(true,true);
     //speaker.setColour(Colour(135,135,135));
     addChildComponent(testLabel1);
     addChildComponent(speaker);
-    addChildComponent(button);
+    //addChildComponent(button);
     addChildComponent(vectorscope);
 //    const OwnedArray<AudioProcessorParameter>& params = owner.getParameters();
 //    for(int i=0; i<params.size(); ++i)
@@ -127,11 +132,11 @@ void SquwbsAudioProcessorEditor::paint (Graphics& g)
     
     if(isnan(getProcessor().monoNow)){
         speaker.load(0.0);
-        button.load(0.0);
+       // button.load(0.0);
     }
     else {
         speaker.load(getProcessor().monoNow);
-        button.load(getProcessor().monoNow);
+        //button.load(getProcessor().monoNow);
     }
     
     /*
@@ -140,14 +145,14 @@ void SquwbsAudioProcessorEditor::paint (Graphics& g)
      */
     i=getBounds();
     
-    i.removeFromTop(i.getHeight()*201/256);
+    //i.removeFromTop(i.getHeight()*201/256);
     cone=getBounds();
-    cone.removeFromBottom(cone.getHeight()*55/256);
+    //cone.removeFromBottom(cone.getHeight()*55/256);
     g.setColour(Colour(135,135,135));
     g.fillRect(i);
     
-    button.setBounds(i);
-    button.setVisible(true);
+    //button.setBounds(i);
+    //button.setVisible(true);
     //i.removeFromBottom(i.getHeight()*1/3);
     g.setColour(Colours::red);
     
@@ -177,21 +182,6 @@ void SquwbsAudioProcessorEditor::paint (Graphics& g)
     //testLabel1.setVisible(true);
     
     
-    if(chooser.changed){
-        getProcessor().eq1.setGoals(chooser.threeband.midhighrms,
-                                    chooser.threeband.midmidrms,
-                                    chooser.threeband.midlowrms,
-                                    chooser.threeband.sidehighrms,
-                                    chooser.threeband.sidemidrms,
-                                    chooser.threeband.sidelowrms,
-                                    chooser.threeband.midhighsd,
-                                    chooser.threeband.midmidsd,
-                                    chooser.threeband.midlowsd,
-                                    chooser.threeband.sidehighsd,
-                                    chooser.threeband.sidemidsd,
-                                    chooser.threeband.sidelowsd);
-        chooser.changed=false;
-    }
     g.setColour(Colours::black);
     g.setFont (14.0f);
     testLabel1.setVisible(false);
